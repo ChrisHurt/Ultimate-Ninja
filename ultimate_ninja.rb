@@ -56,7 +56,7 @@ def auto_ninja num_players
         when 'q'
             exit_game = true
         else
-            players_still_to_be_removed = ''``
+            players_still_to_be_removed = ''
             while input != 'n' && input != "" && players.length > 1 && exit_game == false
                 if players.include?(input.to_i)
                     players.delete_at(players.index(input.to_i))
