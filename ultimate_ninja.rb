@@ -65,7 +65,7 @@ def auto_ninja num_players
                     players.length.times do
                         player_turns_taken << false
                     end
-                    if players.length == 1
+                    if players.length == 1 || input == 'q'
                         exit_game = true
                     end
                 else 
@@ -81,8 +81,10 @@ def auto_ninja num_players
             end
         end
     end
-    `say "Ninja #{players[0]} wins!"`
-    puts "Ninja #{players[0]} wins!"
+    if players.length == 1
+        `say "Ninja #{players[0]} wins!"`
+        puts "Ninja #{players[0]} wins!"
+    end
 end
 
 binding.pry
