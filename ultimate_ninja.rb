@@ -1,5 +1,4 @@
 require 'pry'
-require 'timeout'
 
 def auto_ninja num_players
     players = []
@@ -60,13 +59,11 @@ def auto_ninja num_players
             while input != 'n' && input != "" && players.length > 1 && exit_game == false
                 if players.include?(input.to_i)
                     players.delete_at(players.index(input.to_i))
+                    `say "Player #{input.to_i} eliminated."`
                     puts "Player #{input.to_i} eliminated."
                     player_turns_taken = []
                     players.length.times do
                         player_turns_taken << false
-                    end
-                    if players.length == 1 || input == 'q'
-                        exit_game = true
                     end
                 else 
                     puts "Not a player."
@@ -77,6 +74,8 @@ def auto_ninja num_players
                 if players.length > 1
                     puts "Which player number was eliminated? (n or '' to exit)"
                     input = gets.chomp
+                elsif players.length == 1 || input == 'q'
+                    exit_game = true
                 end
             end
         end
